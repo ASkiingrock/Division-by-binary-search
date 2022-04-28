@@ -18,6 +18,20 @@ while not valid:
     except ValueError:
         print("\nPlease select a number between (inclusive) 1 - 999,999\n")
 
+def HalfWay(a,b,decimal):
+    if a<b:
+        lb = a
+        ub = b
+    elif b<a:
+        lb = b
+        ub = a
+    else:
+        return a
+    while ub-lb > 10**(-(decimal)):
+        ub -= 10**(-(decimal))
+        lb += 10**(-(decimal))
+    return round_half_up(lb, decimal+1)
+
 lb =  0
 ub = 1000000
 
@@ -26,7 +40,7 @@ def whole(lb, ub):
     # again, could be done by humans without division
     # i would like to remove it, but to get a number halway between two i need it
     # unless anyone can think of another way?
-    g = round(lb +(ub-lb)/2)
+    g = HalfWay(lb, ub, 0)
     if g*g == total:
         return g, g+1
     # result found
@@ -43,7 +57,7 @@ def firstPoint(lb, ub, decimal):
     # again, could be done by humans without division
     # i would like to remove it, but to get a number halway between two i need it
     # unless anyone can think of another way
-    g = round_half_up(lb +(ub-lb)/2, decimal)
+    g = HalfWay(lb, ub, decimal)
     if g*g == total:
         return g, g+0.1
     # result found
