@@ -2,10 +2,9 @@ import math
 # ignore this is just my rounding function
 # admittedly, this script does have some division in it, but these are trivial
 # this could be done by a human without division
-# we could easily round numbers for instace
+# we could easily round numbers for instance
 def round_half_up(n, decimals=0):
-    multiplier = 10 ** decimals
-    return math.floor(n*multiplier + 0.5) / multiplier
+    return round(n*(10**decimals))/(10**decimals)
 valid = False
 
 while not valid:
