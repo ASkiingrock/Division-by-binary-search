@@ -72,7 +72,7 @@ def firstPoint(lb, ub, decimal):
         return firstPoint(lb, g, decimal)
 
 lb, ub = whole(0, total)
-for i in range(1, 14):              # this function can iteratively get more decimal places, 
+for i in range(1, 15):              # this function can iteratively get more decimal places, 
     lb,ub = firstPoint(lb, ub, i)   # which is the purpose for the custom rounding function 
     if lb*m == total:               # to round to specific decimal places
         result = lb
@@ -80,8 +80,8 @@ for i in range(1, 14):              # this function can iteratively get more dec
     elif ub*m == total:
         result = ub
         break
-    elif i == 13:
-        result = round_half_up(ub, 13)
+    elif i == 14:
+        result = round_half_up(ub, 14)
         break
     
 # for some reason I can only do it to a max of 13 digits otherwise it throws a recursion error
