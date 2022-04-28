@@ -1,4 +1,3 @@
-import math
 # ignore this is just my rounding function
 # admittedly, this script does have some division in it, but these are trivial
 # this could be done by a human without division
@@ -58,21 +57,37 @@ def whole(lb, ub):
     elif g*m > total:
         return whole(lb, g)
 
+# def firstPoint(lb, ub, decimal):
+#     g = HalfWay(lb, ub, decimal)
+#     if g*m == total:
+#         return g, g+0.1
+#     # result found
+#     elif round_half_up(ub-lb, decimal+1) == 10**(-(decimal)):
+#         return lb, ub
+#     # lower and upper bound are one apart, need to do the next decimal place
+#     elif g*m < total:
+#         return firstPoint(g, ub, decimal)
+#     elif g*m > total:
+#         return firstPoint(lb, g, decimal)
+
 def firstPoint(lb, ub, decimal):
-    g = HalfWay(lb, ub, decimal)
-    if g*m == total:
-        return g, g+0.1
-    # result found
-    elif round_half_up(ub-lb, decimal+1) == 10**(-(decimal)):
-        return lb, ub
-    # lower and upper bound are one apart, need to do the next decimal place
-    elif g*m < total:
-        return firstPoint(g, ub, decimal)
-    elif g*m > total:
-        return firstPoint(lb, g, decimal)
+    for i in range(5):
+        g = HalfWay(lb, ub, decimal)
+        if g*m == total:
+            return g, g+0.1
+        # result found
+        elif round_half_up(ub-lb, decimal+1) == 10**(-(decimal)):
+            return lb, ub
+        # lower and upper are one decimal apart, next decimal place needed
+        elif g*m < total:
+            lb = g
+            continue
+        elif g*m > total:
+            ub = g
+            continue
 
 lb, ub = whole(0, total)
-for i in range(1, 15):              # this function can iteratively get more decimal places, 
+for i in range(1, 16):              # this function can iteratively get more decimal places, 
     lb,ub = firstPoint(lb, ub, i)   # which is the purpose for the custom rounding function 
     if lb*m == total:               # to round to specific decimal places
         result = lb
@@ -80,9 +95,9 @@ for i in range(1, 15):              # this function can iteratively get more dec
     elif ub*m == total:
         result = ub
         break
-    elif i == 14:
-        result = round_half_up(ub, 14)
+    elif i == 15:
+        result = round_half_up(ub, 15)
         break
     
-# for some reason I can only do it to a max of 13 digits otherwise it throws a recursion error
-print(f"\nThe result is (to 13 decimal places): {result}")
+# for some reason I can only do it to a max of 15 digits else python gives up
+print(f"\nThe result is (to 100 decimal places): {result}")
