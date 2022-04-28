@@ -3,10 +3,9 @@
 So this is my division function without using division
 - It's a bit slow
 - No real need for it
-- Also the limit of the numbers you can use is just for ease and not bothering about calculating what will throw a recursion error
+- Also the limit of the numbers you can use is just for ease and not bothering about calculating what will throw a recursion error or whatever
 
-Not admittedly, there is some division, but this is only for the rounding function (which is trivial) and the binary search
-So it's not useful at all
+Despite all of that I'm pretty proud of it just cause it's kind of interesting
 
 How does it work?
 -----------------
