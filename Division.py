@@ -8,6 +8,20 @@ def round_half_up(n, decimals=0):
     return math.floor(n*multiplier + 0.5) / multiplier
 valid = False
 
+def HalfWay(a,b,decimal):
+    if a<b:
+        lb = a
+        ub = b
+    elif b<a:
+        lb = b
+        ub = a
+    else:
+        return a
+    while ub-lb > 10**(-(decimal)):
+        ub -= 10**(-(decimal))
+        lb += 10**(-(decimal))
+    return round_half_up(lb, decimal+1)
+
 while not valid:
     try:
         total = int(input("The numerator (up to 999,999): "))
@@ -37,7 +51,7 @@ def whole(lb, ub):
     # again, could be done by humans without division
     # i would like to remove it, but to get a number halway between two i need it
     # unless anyone can think of another way?
-    g = round(lb +(ub-lb)/2)
+    g = HalfWay(lb, ub, 0)
     if g*m == total:
         return g, g+1
     # result found
@@ -54,7 +68,7 @@ def firstPoint(lb, ub, decimal):
     # again, could be done by humans without division
     # i would like to remove it, but to get a number halway between two i need it
     # unless anyone can think of another way?
-    g = round_half_up(lb +(ub-lb)/2, decimal)
+    g = HalfWay(lb, ub, decimal)
     if g*m == total:
         return g, g+0.1
     # result found
@@ -81,5 +95,3 @@ for i in range(1, 14):              # this function can iteratively get more dec
     
 # for some reason I can only do it to a max of 13 digits otherwise it throws a recursion error
 print(f"\nThe result is (to 13 decimal places): {result}")
-
-
