@@ -36,10 +36,6 @@ lb =  0
 ub = 1000000
 
 def whole(lb, ub):
-    # necessary division for binary search
-    # again, could be done by humans without division
-    # i would like to remove it, but to get a number halway between two i need it
-    # unless anyone can think of another way?
     g = HalfWay(lb, ub, 0)
     if g*g == total:
         return g, g+1
@@ -53,10 +49,6 @@ def whole(lb, ub):
         return whole(lb, g)
 
 def firstPoint(lb, ub, decimal):
-    # necessary division for binary search
-    # again, could be done by humans without division
-    # i would like to remove it, but to get a number halway between two i need it
-    # unless anyone can think of another way
     g = HalfWay(lb, ub, decimal)
     if g*g == total:
         return g, g+0.1
